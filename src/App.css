@@ -1,0 +1,10 @@
+.dog-card .card-image {
+  height: 15em;
+}
+
+.dog-card .image {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
