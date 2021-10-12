@@ -52,7 +52,8 @@ function App() {
     })();
   }, []);
 
-  return <div className="container">
+  return (
+  <div className="container">
     <header className='columns section has-text-centered'>
       <div className='column is-6 is-offset-3'>
         <h1 className='title is-size-3'>
@@ -81,7 +82,26 @@ function App() {
         </form>
       </div>
     </header>
+    <hr />
+    <div className='has-text-centered'>
+      <h3 className='subtitle is-size-4'>
+        All time puppers found = {totalDogsSearched}
+      </h3>
+    </div>
+    <div className='columns section is-multiline'>
+      {isLoading && (
+        <progress className='progress is-medium is-link' max='100'>
+          60%
+        </progress>
+      )}
+      {!isLoading && 
+        dogPictures.map(dogPicture => (
+          <div className='column is-one-quarter' key={dogPicture.id}>
+            <DogCardInfo {...dogPicture} />
+          </div>
+        ))}
+    </div>
   </div>
-
+);
 }
 export default App;
