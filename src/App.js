@@ -31,11 +31,57 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [numOfDogs, setNumOfDogs] = useState('');
   const [totalDogsSearched, setTotalDogsSearched] = useState(0);
-  return (
-    <>
-      <h1>Welcome to Furry Friends Gallery</h1>
-    </>
-  );
-}
 
+  const handleSubmit= async e => {
+    e.preventDefault();
+    setIsLoading(true);
+    setDogPictures(await loadDogPictures(numOfDogs));
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    setTotalDogsSearched(totalDogs => totalDogs + dogPictures.length);
+  }, [dogPictures]);
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(loading => !loading);
+      const dogPictureData = await loadDogPictures();
+      setDogPictures(dogDataArray => [...dogPictureData]);
+      setIsLoading(loading => !loading);
+    })();
+  }, []);
+
+  return <div className="container">
+    <header className='columns section has-text-centered'>
+      <div className='column is-6 is-offset-3'>
+        <h1 className='title is-size-3'>
+          Search for pictures of good doggos
+        </h1>
+        <form className='form' onSubmit={handleSubmit}>
+          <div className='field has-addons has-addons-centered'>
+            <div className='control is-expanded'>
+              <input
+                type='text'
+                className='input is-medium'
+                placeholder='How many dogs should we look for (max 50)?'
+                value={numOfDogs}
+                onChange={e => setNumOfDogs(e.target.value)}
+                />
+            </div>
+            <div className='control'>
+              <button className='button is-primary is-medium'>
+                <span className='icon is-small'>
+                  <i className='fas fa-search'></i>
+                </span>
+                <span>Search</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </header>
+  </div>
+
+}
 export default App;
