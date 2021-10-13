@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Furry Friends Gallery
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fully-functioning picture gallery using the Dog CEO API built using React.
+
+![Furry Friend Gallery](https://d2uusema5elisf.cloudfront.net/courses/beginners-guide-to-real-world-react/module_03/lesson_03/public/assets/furry-friends-gallery.png)
 
 ## Available Scripts
 
